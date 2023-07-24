@@ -1,0 +1,32 @@
+<!-- extends 'base.html' vai vai pegar todos os elementos de base.html e jogar nesse html atual -->
+<!-- fazendo assim com que não seja preciso escrever umm código html todo novamente -->
+{% extends 'base.html' %}
+{% block content %}
+                <!-- Tag do bootstrap pra centralizar tudo no meio da tela -->
+    <div class="col-md-6 offset-md-3">
+        <h1>Login</h1>
+        <br>
+
+        <!-- Criando estrutura de condição para login -->
+        {% if user.is_authenticated %}
+        <h1>Hello World</h1>
+        {% else %}
+
+
+        <!-- Forms de login -->
+        <form method="POST" action="{% url 'home' %}">
+            {% csrf_token %} <!-- Token de segurança de envio de forms -->
+            <form>
+                <div class="mb-3">
+                  <input type="text" class="form-control" name="username" placeholder="Usuário" autocomplete="off" required> 
+                </div>
+                <div class="mb-3">
+                  <input type="password" class="form-control" name="password" placeholder="senha" autocomplete="off" required>
+                </div>
+                <button type="submit" class="btn btn-secondary">Entrar</button>
+              </form>
+        </form>
+    </div>
+{% endif %}
+{% endblock %}
+
