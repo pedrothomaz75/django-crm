@@ -1,6 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Register</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar</title>
+</head>
+<body>
+    <div class="col-md-6 offset-md-3">
+        <h1>Cadastrar</h1>
+            <br>
+        <form method="POST" action="">
+            {% csrf_token %} <!-- Token de segurança de envio de forms -->
+            {% if form.errors %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			  Erro ao cadastrar
+			  {% for field in form %}
+			  	{% if field.errors %}
+			  		{{ field.errors }}
+			  	{% endif %}
+			  {% endfor %}
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endif %}
+            {{ form.as_p }}
+            <form>
+                <button type="submit" class="btn btn-secondary">Entrar</button>
+            </form>
+    </div>
+</body>
+</html>
 
 {% endblock %}
